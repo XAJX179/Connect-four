@@ -5,7 +5,7 @@ module ConnectFour
   # console display
   module Display
     def display_board
-      pp "#{@data}"
+      pp @data.to_s
     end
   end
 end
