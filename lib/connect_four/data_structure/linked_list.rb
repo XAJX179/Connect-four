@@ -92,7 +92,7 @@ class LinkedList
 
   # prints list in a readable format
   def to_s
-    string = String.new
+    string = +''
     each { |elem| string << "( #{elem.data} )->" }
     string << '( nil )'
   end
