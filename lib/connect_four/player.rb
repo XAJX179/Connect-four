@@ -17,7 +17,11 @@ module ConnectFour
 
     def input_move(board)
       value = '10'
-      value = gets.chomp until valid_move?(value, board)
+      until valid_move?(value, board)
+        value = gets.chomp
+        # moving cursor in directions i want to print output
+        print "\e[1A\e[#{@name.length + 9}C         invalid_move try again.    \e[36D" unless valid_move?(value, board)
+      end
       value.to_i
     end
 

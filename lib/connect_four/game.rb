@@ -35,6 +35,7 @@ module ConnectFour
 
     def game_loop(player1, player2, board)
       puts 'Game starts!'
+      board.display_board
       loop do
         run_loop(player1, board)
         break if won?
@@ -45,9 +46,15 @@ module ConnectFour
     end
 
     def run_loop(player, board)
-      board.display_board
+      print "#{player.name}'s turn :"
       move = player.input_move(board)
       board.insert_at(move, player.sign)
+      remove_invalid_warning_output(player)
+      board.redraw
+    end
+
+    def remove_invalid_warning_output(_player)
+      print "\e[1A                                                             \e[1E"
     end
 
     def won?

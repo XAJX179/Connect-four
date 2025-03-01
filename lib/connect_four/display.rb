@@ -5,6 +5,14 @@ module ConnectFour
   # console display
   module Display
     def display_board
+      string = board_string
+      # draw board_string
+      puts "\n\n#{string}"
+      # index values
+      puts " 1   2   3   4   5   6   7\n\n"
+    end
+
+    def board_string
       string = +''
       5.downto(0) do |index|
         @data.each do |elem|
@@ -14,8 +22,12 @@ module ConnectFour
         end
         string << "\n"
       end
-      puts "\n\n#{string}"
-      puts ' 1   2   3   4   5   6   7'
+      string
+    end
+
+    def redraw
+      print "\e[11F"
+      display_board
     end
   end
 end
