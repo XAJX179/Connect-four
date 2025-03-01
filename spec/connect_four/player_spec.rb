@@ -9,12 +9,19 @@ describe ConnectFour::Player do
     let(:real_board) { ConnectFour::Board.new }
 
     before do
-      allow(player_move).to receive(:gets).and_return('8', '8', '8', '4') # rubocop:disable RSpec/SubjectStub
+      $stdin = StringIO.new
+      allow_any_instance_of(described_class).to receive(:print) # rubocop:disable RSpec/AnyInstance
+    end
+
+    after do
+      $stdin = STDIN
     end
 
     it 'calls gets until valid move is inputted' do
+      allow($stdin).to receive(:gets).and_return('8', '8', '8', '4')
+      player_move.instance_variable_set(:@name, 's')
       player_move.input_move(real_board)
-      expect(player_move).to have_received(:gets).exactly(4).times # rubocop:disable RSpec/SubjectStub
+      expect($stdin).to have_received(:gets).exactly(4).times
     end
   end
 end

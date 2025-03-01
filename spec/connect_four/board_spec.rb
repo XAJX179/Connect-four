@@ -6,15 +6,48 @@ describe ConnectFour::Board do
   subject(:board) { described_class.new }
 
   describe '#insert_at(index,value)' do
-    context 'when called with index and value' do
-      context 'if list at index is full' do
-        it 'does not insert' do
-        end
+    context 'when called if list at index is full' do
+      before do
+        board.insert_at(3, 's')
+        board.insert_at(3, 's')
+        board.insert_at(3, 's')
+        board.insert_at(3, 's')
+        board.insert_at(3, 's')
+        board.insert_at(3, 's')
       end
 
-      context 'if list is not full' do
-        it 'appends value at the index' do
-        end
+      it 'does not append' do
+        list = board.data[3]
+        allow(list).to receive(:append)
+        board.insert_at(3, 's')
+        expect(list).not_to have_received(:append)
+      end
+    end
+
+    context 'when called if list is not full' do
+      it 'appends value at the index' do
+        list = board.data[2]
+        allow(list).to receive(:append)
+        board.insert_at(2, 's')
+        expect(list).to have_received(:append).once
+      end
+    end
+  end
+
+  describe '#space_left?' do
+    context 'when called with valid index' do
+      it 'returns true if space left in the list' do
+        expect(board.space_left?(1)).to be true
+      end
+
+      it 'return false if list is full' do # rubocop:disable RSpec/ExampleLength
+        board.insert_at(1, 's')
+        board.insert_at(1, 's')
+        board.insert_at(1, 's')
+        board.insert_at(1, 's')
+        board.insert_at(1, 's')
+        board.insert_at(1, 's')
+        expect(board.space_left?(1)).to be false
       end
     end
   end
