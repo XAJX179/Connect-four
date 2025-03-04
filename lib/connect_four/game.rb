@@ -49,16 +49,26 @@ module ConnectFour
       print "#{player.name}'s turn :"
       move = player.input_move(board)
       board.insert_at(move, player.sign)
-      remove_invalid_warning_output(player)
+      remove_invalid_warning_output
       board.redraw
+      announce_winner(player) if check_win(board)
     end
 
-    def remove_invalid_warning_output(_player)
+    def remove_invalid_warning_output
       print "\e[1A                                                             \e[1E"
     end
 
     def won?
       @winner != ''
+    end
+
+    def check_win(board)
+      board.four_connected?
+    end
+
+    def announce_winner(player)
+      @winner = player.name.to_s
+      puts "#{player.name} won!"
     end
   end
 end

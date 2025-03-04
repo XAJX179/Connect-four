@@ -15,8 +15,8 @@ module ConnectFour
     def board_string
       string = +''
       5.downto(0) do |index|
-        @data.each do |elem|
-          node = elem[1].at(index)
+        @data.each_value do |elem|
+          node = elem.at(index)
           data = node.data unless node.nil?
           string << " #{data || ' '} │"
         end
