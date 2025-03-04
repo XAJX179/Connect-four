@@ -19,13 +19,6 @@ module ConnectFour
       # result(player1, player2)
     end
 
-    def intro_messages(player1, player2)
-      puts "\t\tConnect-4"
-      puts "\t\tWelcome!"
-      input_names(player1, player2)
-      puts "\t\t#{player1.name} vs #{player2.name}"
-    end
-
     def input_names(player1, player2)
       puts "Enter player1's name :"
       player1.input_name
@@ -54,10 +47,6 @@ module ConnectFour
       announce_winner(player) if check_win(board)
     end
 
-    def remove_invalid_warning_output
-      print "\e[1A                                                             \e[1E"
-    end
-
     def won?
       @winner != ''
     end
@@ -66,9 +55,22 @@ module ConnectFour
       board.four_connected?
     end
 
+    private
+
+    def intro_messages(player1, player2)
+      puts "\t\tConnect-4"
+      puts "\t\tWelcome!"
+      input_names(player1, player2)
+      puts "\t\t#{player1.name} vs #{player2.name}"
+    end
+
+    def remove_invalid_warning_output
+      print "\e[1A                                                             \e[1E"
+    end
+
     def announce_winner(player)
       @winner = player.name.to_s
-      puts "#{player.name} won!"
+      puts "#{@winner} won!"
     end
   end
 end

@@ -58,20 +58,15 @@ module ConnectFour
 
     def four_in_line?(line) # rubocop:disable Metrics/MethodLength
       highest_count = 0
-      # pp "line => #{line}"
-      # pp "line => #{line.first}"
       current_value = line.first
       line.each do |e|
         if e.nil?
-          # pp 'nil'
           highest_count = 0
         elsif e == current_value
           highest_count += 1
-          # pp 'good'
         else
           current_value = e
           highest_count = 1
-          # pp 'naw'
         end
         return true if highest_count == 4
       end
@@ -87,7 +82,7 @@ module ConnectFour
       end
     end
 
-    def horizontal_lines
+    def horizontal_lines # rubocop:disable Metrics/MethodLength
       arrays = []
       5.downto(0) do |index|
         array = []
@@ -104,7 +99,6 @@ module ConnectFour
     def left_diagonal_lines
       arrays = []
       (3..5).each do |index|
-        # pp "index => #{index}"
         array = []
         @data.each_value do |list|
           break if index.negative?
@@ -117,7 +111,6 @@ module ConnectFour
         arrays << array
       end
       (0..2).each do |index|
-        # pp "index => #{index}"
         array = []
         @data.each_value.reverse_each do |list|
           break if index > 5
@@ -135,7 +128,6 @@ module ConnectFour
     def right_diagonal_lines
       arrays = []
       (0..2).each do |index|
-        # pp "index => #{index}"
         array = []
         @data.each_value do |list|
           break if index > 5
@@ -148,7 +140,6 @@ module ConnectFour
         arrays << array
       end
       (3..5).each do |index|
-        # pp "index => #{index}"
         array = []
         @data.each_value.reverse_each do |list|
           break if index.negative?
