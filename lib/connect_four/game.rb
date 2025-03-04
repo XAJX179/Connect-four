@@ -8,6 +8,7 @@ module ConnectFour
 
     def initialize
       @winner = nil
+      @total_moves = 0
     end
 
     def start
@@ -40,10 +41,12 @@ module ConnectFour
     def run_loop(player, board)
       print "#{player.name}'s turn :"
       move = player.input_move(board)
+      @total_moves += 1
       board.insert_at(move, player.sign)
       remove_invalid_warning_output
       board.redraw
       announce_winner(player) if check_win(board)
+      tie if @total_moves == 42
     end
 
     def won?
@@ -70,6 +73,11 @@ module ConnectFour
     def announce_winner(player)
       @winner = player.name.to_s
       puts "#{@winner} won!"
+    end
+
+    def tie
+      @winner = 'tie'
+      puts 'Game ties.'
     end
   end
 end
