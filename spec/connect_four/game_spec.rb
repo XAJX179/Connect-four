@@ -52,13 +52,13 @@ describe 'ConnectFour::Game' do
         real_board.insert_at(1, 'a')
       end
 
-      xit 'assigns winner\'s name to @winner' do
+      it 'returns true' do
         expect(game_check.check_win(real_board)).to be true
       end
     end
 
     context 'when called without a win pair' do
-      xit 'assigns nothing to @winner' do
+      it 'returns false' do
         expect(game_check.check_win(real_board)).to be false
       end
     end

@@ -7,7 +7,7 @@ module ConnectFour
     attr_reader :winner
 
     def initialize
-      @winner = ''
+      @winner = nil
     end
 
     def start
@@ -16,7 +16,6 @@ module ConnectFour
       board = Board.new
       intro_messages(player1, player2)
       game_loop(player1, player2, board)
-      # result(player1, player2)
     end
 
     def input_names(player1, player2)
@@ -48,7 +47,7 @@ module ConnectFour
     end
 
     def won?
-      @winner != ''
+      @winner != nil
     end
 
     def check_win(board)

@@ -51,4 +51,86 @@ describe ConnectFour::Board do
       end
     end
   end
+
+  describe '#four_connected?' do
+    context 'when four in vertical_lines' do
+      it 'returns true' do
+        board.insert_at(1, 's')
+        board.insert_at(1, 's')
+        board.insert_at(1, 's')
+        board.insert_at(1, 's')
+        expect(board.four_connected?).to be true
+      end
+    end
+
+    context 'when four in horizontal_lines' do
+      it 'returns true' do
+        board.insert_at(1, 's')
+        board.insert_at(2, 's')
+        board.insert_at(3, 's')
+        board.insert_at(4, 's')
+        expect(board.four_connected?).to be true
+      end
+    end
+
+    context 'when four in left_diagonal_lines' do
+      before do
+        board.insert_at(1, 's')
+        board.insert_at(2, 'a')
+        board.insert_at(2, 's')
+        board.insert_at(3, 'a')
+        board.insert_at(3, 'a')
+        board.insert_at(3, 's')
+        board.insert_at(4, 'a')
+        board.insert_at(4, 'a')
+        board.insert_at(4, 'a')
+        board.insert_at(4, 's')
+      end
+
+      it 'returns true' do
+        expect(board.four_connected?).to be true
+      end
+    end
+
+    context 'when four in right_diagonal_lines' do
+      before do
+        board.insert_at(4, 's')
+        board.insert_at(3, 'a')
+        board.insert_at(3, 's')
+        board.insert_at(2, 'a')
+        board.insert_at(2, 'a')
+        board.insert_at(2, 's')
+        board.insert_at(1, 'a')
+        board.insert_at(1, 'a')
+        board.insert_at(1, 'a')
+        board.insert_at(1, 's')
+      end
+
+      it 'returns true' do
+        expect(board.four_connected?).to be true
+      end
+    end
+
+    context 'when no fours in board' do
+      it 'returns false' do
+        expect(board.four_connected?).to be false
+      end
+    end
+  end
+
+  describe '#four_in_line?' do
+    context 'when there is no four' do
+      it 'returns false' do
+        line = [nil, 'a', 's', 's', 's']
+        expect(board.four_in_line?(line)).to be false
+      end
+    end
+
+    context 'when there is four' do
+      it 'returns true' do
+        line = [nil, 'a', 's', 's', 's', 's']
+        expect(board.four_in_line?(line)).to be true
+      end
+    end
+  end
 end
