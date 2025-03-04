@@ -6,7 +6,7 @@ require_relative '../connect_four/display'
 # ConnectFour
 module ConnectFour
   # Board for ConnectFour game
-  class Board
+  class Board # rubocop:disable Metrics/ClassLength
     attr_reader :data
 
     def initialize
@@ -33,7 +33,8 @@ module ConnectFour
       list.size < 6 unless list.nil?
     end
 
-    def four_connected?
+    def four_connected? # rubocop:disable Metrics/CyclomaticComplexity,Metrics/MethodLength,Metrics/PerceivedComplexity
+      # if a line is found in one direction this won't check others.
       lines = vertical_lines
       lines.each do |line|
         return true if four_in_line?(line)
@@ -75,7 +76,7 @@ module ConnectFour
 
     def vertical_lines
       # due to LinkedList nature there will be no nil as space in between the values
-      # because i am only appending non nil values.
+      # in vertical_lines because i am only appending non nil values.
       lists = @data.values.filter { |e| e.size > 3 }
       lists.map do |list|
         list.map { |node| node.data }
@@ -96,7 +97,8 @@ module ConnectFour
       arrays
     end
 
-    def left_diagonal_lines
+    def left_diagonal_lines # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/MethodLength,Metrics/PerceivedComplexity
+      # for readability disable some style
       arrays = []
       (3..5).each do |index|
         array = []
@@ -125,7 +127,8 @@ module ConnectFour
       arrays
     end
 
-    def right_diagonal_lines
+    def right_diagonal_lines # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/MethodLength,Metrics/PerceivedComplexity
+      # for readability disable some style
       arrays = []
       (0..2).each do |index|
         array = []
