@@ -49,6 +49,8 @@ module ConnectFour
       tie if @total_moves == 42
     end
 
+    # @return Boolean
+    # checks if {#winner} is not nil.
     def won?
       @winner != nil
     end
