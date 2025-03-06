@@ -12,4 +12,4 @@ gem 'rubocop-rspec', '~> 3.4'
 
 gem 'yard', '~> 0.9.37'
 
-gem "rspec", "~> 3.13"
+gem 'rspec', '~> 3.13'
