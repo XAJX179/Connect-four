@@ -38,6 +38,9 @@ module ConnectFour
       end
     end
 
+    # @return [Void]
+    # @param player [ConnectFour::Player]
+    # @param board [ConnectFour::Board]
     def run_loop(player, board)
       print "#{player.name}'s turn :"
       move = player.input_move(board)
@@ -49,7 +52,7 @@ module ConnectFour
       tie if @total_moves == 42
     end
 
-    # @return Boolean
+    # @return [Boolean]
     # checks if {#winner} is not nil.
     def won?
       @winner != nil
