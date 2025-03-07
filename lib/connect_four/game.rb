@@ -3,6 +3,9 @@
 # ConnectFour
 module ConnectFour
   # Game
+  #
+  # Preview:
+  # {file:README.md}
   class Game
     attr_reader :winner
 
