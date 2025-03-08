@@ -6,7 +6,7 @@ require_relative '../connect_four/display'
 # ConnectFour
 module ConnectFour
   # Board for ConnectFour game
-  class Board # rubocop:disable Metrics/ClassLength
+  class Board
     # @return {Integer=> Column}  column_number => Column , whole board data
     # @note There are 7 columns with max height of 6 in a Board.
     attr_reader :data
@@ -42,21 +42,17 @@ module ConnectFour
       false
     end
 
-    def four_in_line?(line) # rubocop:disable Metrics/MethodLength
-      highest_count = 0
-      current_value = line.first
-      line.each do |e|
-        if e.nil?
-          highest_count = 0
-        elsif e == current_value
-          highest_count += 1
-        else
-          current_value = e
-          highest_count = 1
-        end
-        return true if highest_count == 4
+    # @param Array a line
+    # @return Boolean returns true if four consecutive non nil values found in a line else false
+    def four_in_line?(line)
+      result = false
+      line.each_cons(4) do |elements|
+        next if elements.include?(nil)
+
+        first_element = elements.first
+        result = true if elements.all?(first_element)
       end
-      false
+      result
     end
 
     def vertical_lines
