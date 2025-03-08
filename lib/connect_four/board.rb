@@ -1,31 +1,27 @@
 # frozen_string_literal: true
 
-require_relative 'data_structure/linked_list'
+require_relative 'data_structure/column'
 require_relative '../connect_four/display'
 
 # ConnectFour
 module ConnectFour
   # Board for ConnectFour game
   class Board # rubocop:disable Metrics/ClassLength
+    # @return {Integer=> Column}  column_number => Column , whole board data
+    # @note There are 7 columns with max height of 6 in a Board.
     attr_reader :data
 
     def initialize
-      @data = {
-        1 => LinkedList.new,
-        2 => LinkedList.new,
-        3 => LinkedList.new,
-        4 => LinkedList.new,
-        5 => LinkedList.new,
-        6 => LinkedList.new,
-        7 => LinkedList.new
-      }
+      @data = (1..7).to_h { |i| [i, Column.new] }
     end
 
     include Display
 
-    def insert_at(index, value)
-      list = @data[index]
-      list.append(value) unless list.size == 6
+    # @param (Integer,String)
+    # @return (void)
+    def insert_at(column_number, peice)
+      list = @data[column_number]
+      list.append(peice) unless list.full?
     end
 
     def space_left?(index)

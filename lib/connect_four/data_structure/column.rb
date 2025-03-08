@@ -3,7 +3,8 @@
 require_relative 'node'
 
 # class LinkedList for creating linked list with help of Node class's objects
-class LinkedList
+class Column
+  MAX_SIZE = 6
   attr_reader :head, :tail, :size
 
   def initialize
@@ -13,6 +14,12 @@ class LinkedList
     @tail = nil
     # total number of nodes in the list
     @size = 0
+  end
+
+  # @return (Boolean)
+  # checks if size reach MAX_SIZE(6)
+  def full?
+    @size == MAX_SIZE
   end
 
   # appends value at the end of the list
