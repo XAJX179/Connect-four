@@ -29,24 +29,13 @@ module ConnectFour
       list.size < 6 unless list.nil?
     end
 
-    def four_connected? # rubocop:disable Metrics/CyclomaticComplexity,Metrics/MethodLength,Metrics/PerceivedComplexity
+    # @return [Boolean]
+    #
+    # returns true if four connected peices vertically,horizontally or diagonally found else false
+    def four_connected?
       # if a line is found in one direction this won't check others.
-      lines = vertical_lines
-      lines.each do |line|
-        return true if four_in_line?(line)
-      end
+      lines = (vertical_lines + horizontal_lines + left_diagonal_lines + right_diagonal_lines)
 
-      lines = horizontal_lines
-      lines.each do |line|
-        return true if four_in_line?(line)
-      end
-
-      lines = left_diagonal_lines
-      lines.each do |line|
-        return true if four_in_line?(line)
-      end
-
-      lines = right_diagonal_lines
       lines.each do |line|
         return true if four_in_line?(line)
       end
