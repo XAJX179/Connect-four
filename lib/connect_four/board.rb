@@ -24,9 +24,11 @@ module ConnectFour
       list.append(peice) unless list.full?
     end
 
-    def space_left?(index)
-      list = @data[index]
-      list.size < 6 unless list.nil?
+    # @param Integer column_number for the column on the Board {#data}
+    # @return Boolean returns true if column is not {Column#full?} else false
+    def space_left?(column_number)
+      column = @data[column_number]
+      !column&.full?
     end
 
     # @return [Boolean]
