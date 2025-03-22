@@ -1,3 +1,7 @@
+
+[![Documentation](https://github.com/XAJX179/Connect-four/actions/workflows/documentation.yml/badge.svg)](https://github.com/XAJX179/Connect-four/actions/workflows/documentation.yml)
+[![Ruby Test](https://github.com/XAJX179/Connect-four/actions/workflows/tests.yml/badge.svg)](https://github.com/XAJX179/Connect-four/actions/workflows/tests.yml)
+
 # Table of contents
 
 <!--toc:start-->
